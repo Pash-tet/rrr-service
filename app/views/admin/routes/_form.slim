@@ -1,0 +1,16 @@
+= semantic_form_for [:admin, @route], builder: ActiveAdmin::FormBuilder do |f|
+  = f.inputs "Service Route" do
+    = f.input :service_http_method, collection: %w[get put post delete]
+    = f.input :service_path
+  = f.inputs "Request Route" do
+    = f.input :request_http_method, collection: %w[get put post delete]
+    = f.input :remote_method
+  = f.inputs "Params Remapping" do
+    = render partial: "admin/shared/remapping_instruction"
+    - f.has_many :params_remappings, heading: "Params Sets" do |pf|
+      - pf.input :initial_key
+      - pf.input :remapped_key
+      - pf.input :initial_value
+      - pf.input :remapped_value
+  = f.actions
+
