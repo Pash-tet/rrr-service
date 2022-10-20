@@ -16,5 +16,5 @@ test:
 
 production:
   <<: *default
-  database: rrr_service_prod
+  database: <%= Rails.application.credentials.dig(:database, :name) %>
 
